@@ -1,14 +1,32 @@
+
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import Board from './Components/Board'
+import Header from './Components/Header'
+import Row from './Components/Row'
+import TileButton from './Components/TileButton'
+import { Words } from './Components/data/WordList'
 
 function App() {
 
+  const [wordObject, setWordObject] = useState(
+    Words[Math.floor(Math.random() * Words.length)]
+  )
+
+  const [guesses, setGuesses] = useState(['', '', '', '', '', '']);
+  const [solution, setSolution] = useState(wordObject.word);
+  const [hint, setHint] = useState(wordObject.hint)
+  const [currentRow, setCurrentRow] = useState(0);
+
   return (
-    <>
-    <h2>Wordle game</h2>
-    </>
+    <div className='App'>
+      <div className='game-area'>
+        <Header />
+        <Board guesses={guesses} solution={solution} currentRow={currentRow} />
+        <Row />
+        <TileButton />
+      </div>
+    </div>
   )
 }
 
