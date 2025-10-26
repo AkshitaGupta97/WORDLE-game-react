@@ -1,8 +1,8 @@
 import React from 'react'
 
-function TileButton({letter}) {
+function TileButton({letter, status}) {
   return (
-    <div className='tileButton'>
+    <div className={`tileButton ${status}`}>
         {
           letter
         }

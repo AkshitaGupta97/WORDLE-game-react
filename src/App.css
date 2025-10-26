@@ -31,7 +31,84 @@ body {
   box-shadow: 0 4px 8px 12px rgb(158, 153, 153);
   border-radius: 8px;
   margin: 12;
-
+}
+h1, h2 {
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(253, 102, 128);
+  text-shadow: 2px 2px white;
+  margin-bottom: 10px;
+}
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+  
+}
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  padding: 5px;
+  
 }
 
+.row.current {
+  animation: wiggle 0.5s infinite alternate;
+}
 
+@keyframes wiggle {
+  0% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate((2deg));
+  }
+}
+.tileButton {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 2px;
+  text-transform: uppercase;
+  color: #fef3e4;
+  border: 2px solid beige;
+  border-radius: 6px;
+  box-shadow: 0 2px 2px white;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.tileButton.correct {
+  background-color: green;
+  border-color: rgb(1, 79, 1);
+}
+.tileButton.present {
+  background-color: gray;
+  border-color: rgb(178, 171, 171);
+}
+.tileButton.absent {
+  background-color: rgb(130, 82, 82);
+  border-color: rgb(202, 189, 189);
+}
+.hint {
+  font-size: 22px;
+  background-color: rgb(66, 62, 62);
+  border: 2px solid beige;
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  box-shadow: 0 2px 2px #5c5b5b;
+  max-width: 90%;
+  text-align: center;
+}
+.hint b {
+  color: aqua;
+}
+.hint span {
+  font-size: 18px;
+}
