@@ -1,52 +1,26 @@
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import './App.css'
 import Board from './Components/Board'
 import Header from './Components/Header'
-import { Words } from './Components/data/WordList'
+import Keyboard from './Components/Keyboard'
+import { useWordleGame } from './Hooks/useWordleGame'
 
 function App() {
 
-  const [wordObject, setWordObject] = useState(
-    Words[Math.floor(Math.random() * Words.length)]
-  )
+  const {guesses, solution, hint, currentRow,
+    gameOver, message, handleKeyPress, resetGame} = useWordleGame()
 
-  const [guesses, setGuesses] = useState(['asdfa', '', '', '', '', '']);
-  const [solution, setSolution] = useState(wordObject.word);
-  const [hint, setHint] = useState(wordObject.hint)
-  const [currentRow, setCurrentRow] = useState(0);
-  const [gameOver, setGameOver] = useState(false);
-  const [message, setMessage] = useState('');
+  const handleKeyDown = useCallback((event) => {
+    handleKeyPress(event.key.toLowercase())
+  },[handleKeyPress])
 
-  const handleKeyPress = (key) => {
-    if(gameOver) return;
-
-    const normalizedkey = key.toLowercase();
-    if(normalizedkey === 'enter'){
-      if(guesses[currentRow].length !== 5){
-        return;
-      }
-      if(currentRow === 5){
-        setMessage(`Game Over! Theword is ${solution.toUpperCase()}`)
-        setGameOver(true);
-        return;
-      }
-
-      setCurrentRow((prev) => prev + 1);
-      setMessage('');
-      return;
+  useEffect(() => {
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
     }
-
-    if(normalizedkey === 'backspace'){
-      setGuesses((prevGuess) => {
-        const newGuess = [...prevGuess]
-        newGuess[currentRow] = newGuess[currentRow].splice(0, -1);
-        return newGuess
-      })
-      return;
-    }
-
-  }
+  },[handleKeyDown])
 
   return (
     <div className='App'>
@@ -58,6 +32,12 @@ function App() {
             <b>Hint : </b> <span>{hint}</span>
         </div>
       </div>
+      
+        <Keyboard onKeyPress={handleKeyPress} />
+
+        {gameOver && (
+          <PopUp message={message} onReplay={resetGame} />
+        )}
     </div>
   )
 }

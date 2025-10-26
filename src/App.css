@@ -11,9 +11,11 @@ body {
   margin: 0;
   padding: 0;
   max-height: 100vh;
+  overflow: hidden;
 }
 
 .App {
+  max-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,17 +27,18 @@ body {
   align-items: center;
   flex-direction: column;
   text-align: center;
-  max-width: 600px;
-  height: 90%;
-  width: 90%;
+  max-width: 500px;
+  max-height: 800px;
+  width: 50%;
+  height: 20%;
   box-shadow: 0 4px 8px 12px rgb(158, 153, 153);
   border-radius: 8px;
-  margin: 12;
+  
 }
 h1, h2 {
   font-size: 40px;
   font-weight: bold;
-  color: rgb(253, 102, 128);
+  color: rgb(239, 166, 178);
   text-shadow: 2px 2px white;
   margin-bottom: 10px;
 }
@@ -50,7 +53,7 @@ h1, h2 {
   display: flex;
   justify-content: center;
   gap: 5px;
-  padding: 5px;
+  padding: 2px;
   
 }
 
@@ -74,7 +77,6 @@ h1, h2 {
   align-items: center;
   font-size: 28px;
   font-weight: bold;
-  padding: 2px;
   text-transform: uppercase;
   color: #fef3e4;
   border: 2px solid beige;
@@ -111,4 +113,42 @@ h1, h2 {
 }
 .hint span {
   font-size: 18px;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.key {
+  padding: 8px 10px;
+  background-color: bisque;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+  border:2px solid beige;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.2s, transform 0.1s;
+}
+.key:hover {
+  background-color: rgb(242, 190, 126);
+}
+
+.key.active {
+  transform: translateY(2px);
+  box-shadow: 2px 2px 0 gray;
+}
+
+.key.special-key {
+  background-color: #e0b677;
+}
+.key.special-key:hover {
+  background-color: rgb(253, 243, 228);
 }
