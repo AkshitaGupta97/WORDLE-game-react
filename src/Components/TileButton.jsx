@@ -1,9 +1,11 @@
 import React from 'react'
 
-function TileButton() {
+function TileButton({letter}) {
   return (
     <div className='tileButton'>
-        TileButton
+        {
+          letter
+        }
     </div>
   )
 }
