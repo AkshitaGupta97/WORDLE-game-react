@@ -12,6 +12,8 @@ function Keyboard({onKeyPress}) {
         setTimeout(() => setActiveKey(null), 200)
     }
 
+    
+
   return (
     <div className='keyboard'>
         {

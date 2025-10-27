@@ -12,13 +12,13 @@ function App() {
     gameOver, message, handleKeyPress, resetGame} = useWordleGame()
 
   const handleKeyDown = useCallback((event) => {
-    handleKeyPress(event.key.toLowercase())
+    handleKeyPress(event.key.toLowerCase())
   },[handleKeyPress])
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keydown', (e) => handleKeyDown())
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
+      window.removeEventListener('keydown', (e) => handleKeyDown())
     }
   },[handleKeyDown])
 

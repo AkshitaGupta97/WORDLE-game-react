@@ -17,7 +17,7 @@ export const useWordleGame = () => {
     const handleKeyPress = (key) => {
         if (gameOver) return;
 
-        const normalizedkey = key.toLowercase();
+        const normalizedkey = key.toLowerCase();
 
         if (normalizedkey === 'enter') {
             if (guesses[currentRow].length !== 5) {
